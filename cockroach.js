@@ -15,8 +15,6 @@ var config = process.env.ENV==='DEV'? {} : {
 };
 
 const pool = new Pool(config);
-
-
 const cockroack = {
     getPool: () => new Promise((resolve, reject) => {
         pool.connect((err, client, release) => {

@@ -10,15 +10,12 @@ const db = new Sybase(host, port, dbname, username, password, false, `${process.
 
 const sybase = {
     getPool: () => new Promise((resolve, reject) => {
-        
         if (!db.isConnected()) {
-            
             db.connect(function (err) {
                 if (err) {
                     console.error(err);
                     reject({ task: 'Sybase - getPool', ex: err })
                 }
-                
                 resolve(true);
             });
         } else {
@@ -27,17 +24,10 @@ const sybase = {
     }),
     query: (query, params) => new Promise((resolve, reject) => {
         let q = '';
-        
-       
-            q = query.replace('$1', params)
-       
-        
+        q = query.replace('$1', params);
         sybase.getPool().then(() => {
-            
             db.query(q, function (err, data) {
-                
                 if (err) {
-                    
                     reject({ task: 'Sybase - query', ex: err })
                 }
                 resolve(data);

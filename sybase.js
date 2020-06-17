@@ -6,7 +6,7 @@ const dbname = process.env.SYBASE_DATABASE;
 const username = process.env.SYBASE_USER;
 const password = process.env.SYBASE_PASSWORD;
 
-const db = new Sybase(host, port, dbname, username, password, false, `${process.env.PWD}/controllers/JavaSybaseLink.jar`);
+const db = new Sybase(host, port, dbname, username, password, false, `${process.env.PWD}/libs/JavaSybaseLink.jar`);
 
 const sybase = {
     getPool: () => new Promise((resolve, reject) => {

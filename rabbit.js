@@ -8,25 +8,26 @@ const mq = {
         conn.createChannel().then((channel) => {
           channel.assertQueue(queue, { durable: true })
             .then(() => {
-              resolve(channel);
+              resolve({ channel, conn });
             }).catch(reject);
         }).catch(reject);
       }).catch(reject);
   }),
   emit: (queue, message) => new Promise((resolve, reject) => {
-    mq.connect(queue).then((channel) => {
-      
-        channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)), { deliveryMode: true })
-        
-        setTimeout(() => {
-          resolve(true);
-          channel.close();
-        }, 500)
+    mq.connect(queue).then(({ channel, conn }) => {
+
+      channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)), { deliveryMode: true })
+
+      setTimeout(() => {
+        resolve(true);
+        channel.close();
+        conn.close();
+      }, 500)
 
     }).catch(reject);
   }),
   on: (queue, callback, ack) => {
-    mq.connect(queue).then(( channel ) => {
+    mq.connect(queue).then(({ channel }) => {
       channel.prefetch(1);
       channel.consume(queue, callback.bind(this, channel), { noAck: !!ack });
     });

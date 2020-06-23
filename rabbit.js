@@ -26,10 +26,15 @@ const mq = {
 
     }).catch(reject);
   }),
-  on: (queue, callback, ack) => {
+  on: (queue, callback, { ack, closeConn }) => {
     mq.connect(queue).then(({ channel }) => {
       channel.prefetch(1);
-      channel.consume(queue, callback.bind(this, channel), { noAck: !!ack });
+      channel.consume(queue, (msg) => {
+        callback.call(this, channel, msg)
+        if (closeConn) {
+          conn.close()
+        }
+      }, { noAck: !!ack });
     });
   }
 }

@@ -31,7 +31,6 @@ const mq = {
         callback.call(this, channel, msg)
         if (closeConn) {
           setTimeout(() => {
-            resolve(true);
             channel.close();
             conn.close();
           }, 500)

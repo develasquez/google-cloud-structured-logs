@@ -15,9 +15,7 @@ const mq = {
   }),
   emit: (queue, message) => new Promise((resolve, reject) => {
     mq.connect(queue).then(({ channel, conn }) => {
-
       channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)), { deliveryMode: true })
-
       setTimeout(() => {
         resolve(true);
         channel.close();
@@ -26,18 +24,24 @@ const mq = {
 
     }).catch(reject);
   }),
-  on: (queue, callback, { ack, closeConn }) => {
-    mq.connect(queue).then(({ channel }) => {
+  on: (queue, callback, { ack = false, closeConn = false } = {}) => {
+    mq.connect(queue).then(({ channel, conn }) => {
       channel.prefetch(1);
       channel.consume(queue, (msg) => {
         callback.call(this, channel, msg)
         if (closeConn) {
-          conn.close()
+          setTimeout(() => {
+            resolve(true);
+            channel.close();
+            conn.close();
+          }, 500)
         }
-      }, { noAck: !!ack });
+      }, { noAck: ack });
     });
   }
 }
+
+
 
 module.exports = mq;
 

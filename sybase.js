@@ -33,6 +33,10 @@ const sybase = {
                 resolve(data);
             });
         });
+    }),
+    closePool: () => new Promise((resolve) => {
+        db.disconnect();
+        resolve();
     })
 };
 

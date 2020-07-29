@@ -2,9 +2,9 @@
 
 This is a little package to simplify structured logging in Google Cloud Platform. 
 
-This package helps to track usefull information from operation context and all the informatins needed to track not only one service operation else the hability to track intaraction between services using a trackId to follow every each log generated during consecutive services comunications.
+This package helps to track useful information from operation context and all the information needed to track not only one service operation else the ability to track interactions between services using a trackId to follow every each log generated during consecutive services communications.
 
-## Instalation
+## Installation
 
 
 ```sh
@@ -13,7 +13,9 @@ npm install --save google-cloud-structured-logs
 
 ## Simple Example
 
-A simple implementatios can be like this, you need to call the librarie, create a log Object with the process or service name and set a new context. After that you can log something passing this context and your logs will be beautiful.
+A simple implementation can be like this, you need to call the library, create a log Object with the process or service name and set a new context. After that you can log something passing this context and your logs will be beautiful.
+
+
 
 ```js
 
@@ -75,7 +77,7 @@ setTimeout(() => {
     log.info(ctx, '300 ms after');
 }, 300)
 ```
-The previous log wil generate this output, please see **ms** value, that metric can be very usefull to get insigths from some external services requests o bd queries.
+The previous log will generate this output, please see **ms** value, that metric can be very useful to get insights from some external services requests o bd queries.
 
 ```json
 {
@@ -98,7 +100,7 @@ The previous log wil generate this output, please see **ms** value, that metric 
 ```
 ## Passing trackId
 
-When you want to trace the excecution between your services, you can pass as parameter the trackId. To do this we only need to pass the trackId in the context creation with **newCtx**
+When you want to trace the execution between your services, you can pass as parameter the trackId. To do this we only need to pass the trackId in the context creation with **newCtx**
 
 ```js
 const ctx = log.newCtx('Task Name', trackId);
@@ -190,9 +192,9 @@ addPromise(ctx, 5, 15).then((result) => {
 }
 ```
 
-## Managing uncaught Exceptions
+## Managing Uncaught Exceptions
 
-When your code generate an uncaughtException it will be captured automaticaly by the logger and logged in the structured format and bring to you some additional information about CPU and RAM usage, the ejecution/service uptime and some more.
+When your code generate an uncaughtException it will be captured automatically by the logger and logged in the structured format and bring to you some additional information about CPU and RAM usage, the execution/service uptime and some more.
 
 ```json
 {

@@ -27,7 +27,6 @@ describe('Looger functions Test', function () {
         const newUuid = uuidv4();
         const log = logger(proc);
         const ctx = log.newCtx('This will bee logged', newUuid);
-        expect(ctx.process).toEqual(proc);
         expect(ctx.trackId).toEqual(newUuid);
     });
     it('Should create a new context with out passing UUID', () => {
@@ -38,7 +37,6 @@ describe('Looger functions Test', function () {
         stubLog = sinon.stub(log.logger, 'info');
         stubError = sinon.stub(log.logger, 'error');
         const ctx = log.newCtx('This will bee logged');
-        expect(ctx.process).toEqual(proc);
         expect(ctx.trackId).toMatch(uuidPattern);
     });
     it('Should set a new context correctly', () => {
@@ -50,9 +48,8 @@ describe('Looger functions Test', function () {
         stubError = sinon.stub(log.logger, 'error');
         const prevCtx = log.newCtx('this message doesnt matter');
         const newCtx = log.setCtx(prevCtx, task, param);
-        expect(newCtx.process).toEqual(proc);
         expect(newCtx.task).toEqual(task);
-        expect(newCtx.parameters).toEqual(param.toString());
+        expect(newCtx.parameters).toEqual(param);
         expect(typeof new Date(newCtx.startAt)).toEqual('object');
     });
     it('Should call console log on info', () => {
@@ -71,7 +68,7 @@ describe('Looger functions Test', function () {
         stubError = sinon.stub(log.logger, 'error');
         const ctx = log.newCtx('this message doesnt matter');
         stubLog.callsFake((l) => {
-            expect(l.result).toEqual("{\"ok\":200}");
+            expect(l.result).toEqual({ok:200});
             done();
         });
         log.info(ctx, 'calling log info', {ok: 200});

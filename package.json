@@ -1,6 +1,6 @@
 {
   "name": "google-cloud-structured-logs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This module simplify logging operations in Node JS Projects inside Google Cloud",
   "main": "index.js",
   "directories": {

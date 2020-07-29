@@ -1,0 +1,31 @@
+{
+  "name": "google-cloud-structured-logs",
+  "version": "1.0.0",
+  "description": "This module simplify logging operations in Node JS Projects inside Google Cloud",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node node_modules/jasmine/bin/jasmine.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/cruz-blanca/js-libs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "jasmine": "^3.5.0",
+    "jasmine-json-test-reporter": "^1.0.0-beta",
+    "sinon": "^9.0.2",
+    "sinon-stub-promise": "^4.0.0",
+    "sinon-chai": "^3.5.0"
+  },
+  "dependencies": {
+    "@google-cloud/logging-bunyan": "^3.0.0",
+    "bunyan": "^1.8.14",
+    "uuid": "^8.2.0"
+  }
+}

@@ -4,7 +4,7 @@
 
 This is a little package to simplify structured logging in Google Cloud Platform. 
 
-This package helps to track useful information from operation context and all the information needed to track not only one service operation else the ability to track interactions between services using a trace to follow every each log generated during consecutive services communications.
+This package helps to track useful information from operation context and all the information needed to track not only one service operation else the ability to track interactions between services using a trace to follow every each log generated during consecutive services communications. 
 
 ## Installation
 

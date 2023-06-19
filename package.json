@@ -1,6 +1,6 @@
 {
   "name": "google-cloud-structured-logs",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "This module simplify logging operations in Node JS Projects inside Google Cloud",
   "main": "index.js",
   "directories": {
@@ -24,7 +24,6 @@
     "sinon-chai": "^3.5.0"
   },
   "dependencies": {
-    "@google-cloud/logging-bunyan": "^3.0.0",
     "bunyan": "^1.8.14",
     "uuid": "^8.2.0"
   }
